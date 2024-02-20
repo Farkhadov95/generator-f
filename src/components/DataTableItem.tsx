@@ -1,5 +1,5 @@
 import { Tr, Td } from "@chakra-ui/react";
-import { dataType } from "./DataTable";
+import { dataType } from "../types";
 
 type DataTableItemProps = {
   user: dataType;
