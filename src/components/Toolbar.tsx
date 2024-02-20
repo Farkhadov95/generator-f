@@ -22,11 +22,7 @@ const Toolbar = ({ onSubmit }: ToolbarProp) => {
         <Box display={"flex"} alignItems={"baseline"}>
           <Box display={"flex"} alignItems={"baseline"} marginRight={10}>
             <Text paddingRight={3}>Region: </Text>
-            <Select
-              name="region"
-              placeholder="Select option"
-              width={"fit-content"}
-            >
+            <Select name="region" defaultValue={"usa"} width={"fit-content"}>
               <option value="usa" defaultChecked>
                 USA
               </option>

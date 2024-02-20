@@ -9,6 +9,7 @@ export type requestType = {
     region: Regions;
     seed: number;
     errors: number;
+    page: number;
   };
   
   
