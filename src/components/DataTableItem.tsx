@@ -1,13 +1,20 @@
 import { Tr, Td } from "@chakra-ui/react";
+import { dataType } from "./DataTable";
 
-const DataTableItem = () => {
+type DataTableItemProps = {
+  user: dataType;
+};
+
+const DataTableItem = (prop: DataTableItemProps) => {
+  const { name, email, phone, house, street, city, country, zipCode } =
+    prop.user;
   return (
     <Tr>
       <Td>1</Td>
-      <Td>inches</Td>
-      <Td>millimetres (mm)</Td>
-      <Td>25.4</Td>
-      <Td isNumeric>25.4</Td>
+      <Td>{name}</Td>
+      <Td>{email}</Td>
+      <Td>{phone}</Td>
+      <Td>{`${house}, ${street},  ${city},  ${country},  ${zipCode}`}</Td>
     </Tr>
   );
 };
