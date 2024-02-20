@@ -9,6 +9,12 @@ import { Regions, dataType, requestType } from "./types";
 function App() {
   const [users, setUsers] = useState<dataType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const reset = () => {
+    setUsers([]);
+    setCurrentPage(1);
+  };
+
   const { mutate, isError, isPending } = useMutation<
     dataType[],
     Error,
@@ -43,7 +49,7 @@ function App() {
 
   return (
     <Box padding={10}>
-      <Toolbar onSubmit={handleSubmit} />
+      <Toolbar onSubmit={handleSubmit} reset={reset} />
       {isPending ? (
         <Stack direction="row" spacing={4} padding={10}>
           <Spinner size="lg" />

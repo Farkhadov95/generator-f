@@ -6,11 +6,11 @@ type DataTableItemProps = {
 };
 
 const DataTableItem = (prop: DataTableItemProps) => {
-  const { name, email, phone, house, street, city, country, zipCode } =
+  const { id, name, email, phone, house, street, city, country, zipCode } =
     prop.user;
   return (
     <Tr>
-      <Td>1</Td>
+      <Td>{id}</Td>
       <Td>{name}</Td>
       <Td>{email}</Td>
       <Td>{phone}</Td>

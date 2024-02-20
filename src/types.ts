@@ -15,6 +15,7 @@ export type requestType = {
   
   
 export type dataType = {
+    id: string;
     name: string;
     email: string;
     phone: string;

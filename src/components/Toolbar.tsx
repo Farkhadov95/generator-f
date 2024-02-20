@@ -13,16 +13,22 @@ import { FormEventHandler } from "react";
 
 type ToolbarProp = {
   onSubmit: FormEventHandler<HTMLFormElement>;
+  reset: () => void;
 };
 
-const Toolbar = ({ onSubmit }: ToolbarProp) => {
+const Toolbar = ({ onSubmit, reset }: ToolbarProp) => {
   return (
     <Box display={"flex"} justifyContent={"space-between"} paddingBottom={10}>
       <form onSubmit={onSubmit}>
         <Box display={"flex"} alignItems={"baseline"}>
           <Box display={"flex"} alignItems={"baseline"} marginRight={10}>
             <Text paddingRight={3}>Region: </Text>
-            <Select name="region" defaultValue={"usa"} width={"fit-content"}>
+            <Select
+              name="region"
+              defaultValue={"usa"}
+              width={"fit-content"}
+              onChange={reset}
+            >
               <option value="usa" defaultChecked>
                 USA
               </option>
@@ -44,6 +50,7 @@ const Toolbar = ({ onSubmit }: ToolbarProp) => {
               defaultValue={0}
               width={"80px"}
               marginRight={5}
+              onChange={reset}
             >
               <SliderTrack>
                 <SliderFilledTrack />
@@ -55,6 +62,7 @@ const Toolbar = ({ onSubmit }: ToolbarProp) => {
               type={"number"}
               width={"100px"}
               defaultValue={0}
+              onChange={reset}
             />
           </Box>
 
@@ -65,6 +73,7 @@ const Toolbar = ({ onSubmit }: ToolbarProp) => {
               type={"number"}
               width={"100px"}
               defaultValue={0}
+              onChange={reset}
             />
           </Box>
 
