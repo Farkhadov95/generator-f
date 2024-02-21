@@ -16,6 +16,7 @@ const DataTable = (data: DataTableProps) => {
           <Thead>
             <Tr>
               <Th>Number</Th>
+              <Th>ID</Th>
               <Th>Name</Th>
               <Th>Email</Th>
               <Th>Phone number</Th>
@@ -25,7 +26,7 @@ const DataTable = (data: DataTableProps) => {
 
           <Tbody>
             {users.map((user, index) => (
-              <DataTableItem key={index} user={user} />
+              <DataTableItem key={index} user={user} orderNum={index} />
             ))}
           </Tbody>
         </Table>

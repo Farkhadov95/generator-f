@@ -17,7 +17,8 @@ type ToolbarProp = {
 };
 
 const Toolbar = ({ onSubmit, reset }: ToolbarProp) => {
-  const [currentSeed, setCurrentSeed] = useState(0);
+  const [currentSeed, setCurrentSeed] = useState<number>(0);
+  const [currentError, setCurrentError] = useState<number>(0);
   return (
     <Box display={"flex"} justifyContent={"space-between"} paddingBottom={10}>
       <form onSubmit={onSubmit}>
@@ -46,10 +47,13 @@ const Toolbar = ({ onSubmit, reset }: ToolbarProp) => {
             name="errors"
             width={"100px"}
             step={0.5}
-            defaultValue={0}
+            defaultValue={0.0}
             min={0}
             max={1000}
-            onChange={reset}
+            onChange={(e) => {
+              setCurrentError(parseFloat(e));
+            }}
+            value={Number.isNaN(currentError) ? 0 : currentError}
           >
             <NumberInputField />
             <NumberInputStepper>
