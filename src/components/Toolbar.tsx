@@ -88,7 +88,10 @@ const Toolbar = ({ onSubmit, reset, onExport }: ToolbarProp) => {
           </NumberInput>
           <Button
             marginRight={"80px"}
-            onClick={() => setCurrentSeed(Math.round(Math.random() * 1000))}
+            onClick={() => {
+              reset();
+              setCurrentSeed(Math.round(Math.random() * 1000));
+            }}
           >
             Random Seed
           </Button>
