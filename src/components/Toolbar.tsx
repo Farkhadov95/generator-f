@@ -1,15 +1,15 @@
 import {
   Box,
   Button,
-  Input,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Select,
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
   Text,
 } from "@chakra-ui/react";
-import { FormEventHandler } from "react";
+import { FormEventHandler, useState } from "react";
 
 type ToolbarProp = {
   onSubmit: FormEventHandler<HTMLFormElement>;
@@ -17,10 +17,11 @@ type ToolbarProp = {
 };
 
 const Toolbar = ({ onSubmit, reset }: ToolbarProp) => {
+  const [currentSeed, setCurrentSeed] = useState(0);
   return (
     <Box display={"flex"} justifyContent={"space-between"} paddingBottom={10}>
       <form onSubmit={onSubmit}>
-        <Box display={"flex"} alignItems={"baseline"}>
+        <Box display={"flex"} alignItems={"center"}>
           <Box display={"flex"} alignItems={"baseline"} marginRight={10}>
             <Text paddingRight={3}>Region: </Text>
             <Select
@@ -38,44 +39,52 @@ const Toolbar = ({ onSubmit, reset }: ToolbarProp) => {
             </Select>
           </Box>
 
-          <Box
-            display={"flex"}
-            width={"fit-content"}
-            alignItems={"baseline"}
+          <Text marginRight={5}>Errors: </Text>
+          <NumberInput
             marginRight={10}
+            height={"auto"}
+            name="errors"
+            width={"100px"}
+            step={0.5}
+            defaultValue={0}
+            min={0}
+            max={1000}
+            onChange={reset}
           >
-            <Text marginRight={5}>Errors: </Text>
-            <Slider
-              aria-label="slider-ex-1"
-              defaultValue={0}
-              width={"80px"}
-              marginRight={5}
-              onChange={reset}
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-            <Input
-              name="errors"
-              type={"number"}
-              width={"100px"}
-              defaultValue={0}
-              onChange={reset}
-            />
-          </Box>
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
 
-          <Box display={"flex"} alignItems={"baseline"} marginRight={10}>
-            <Text marginRight={3}>Seed: </Text>
-            <Input
-              name="seed"
-              type={"number"}
-              width={"100px"}
-              defaultValue={0}
-              onChange={reset}
-            />
-          </Box>
+          <Text marginRight={3}>Seed: </Text>
+          <NumberInput
+            marginRight={5}
+            height={"auto"}
+            name="seed"
+            width={"100px"}
+            step={1}
+            defaultValue={0}
+            value={currentSeed}
+            min={0}
+            max={1000}
+            onChange={(e) => {
+              setCurrentSeed(parseInt(e)), reset();
+            }}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <Button
+            marginRight={"80px"}
+            onClick={() => setCurrentSeed(Math.round(Math.random() * 1000))}
+          >
+            Random Seed
+          </Button>
 
           <Button type="submit">Apply</Button>
         </Box>

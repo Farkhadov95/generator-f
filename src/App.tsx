@@ -38,7 +38,7 @@ function App() {
     if (region !== undefined && errors && seed) {
       const requestData: requestType = {
         region: Regions[region],
-        errors: parseInt(errors),
+        errors: parseFloat(errors),
         seed: parseInt(seed),
         page: page,
       };
