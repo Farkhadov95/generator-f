@@ -20,6 +20,7 @@ type ToolbarProp = {
 const Toolbar = ({ onSubmit, reset, onExport }: ToolbarProp) => {
   const [currentSeed, setCurrentSeed] = useState<number>(0);
   const [currentError, setCurrentError] = useState<number>(0);
+
   return (
     <Box display={"flex"} justifyContent={"space-between"} paddingBottom={10}>
       <form onSubmit={onSubmit}>
@@ -72,7 +73,7 @@ const Toolbar = ({ onSubmit, reset, onExport }: ToolbarProp) => {
             width={"100px"}
             step={1}
             defaultValue={0}
-            value={currentSeed}
+            value={Number.isNaN(currentSeed) ? 0 : currentSeed}
             min={0}
             max={1000}
             onChange={(e) => {
