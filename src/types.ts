@@ -1,5 +1,5 @@
 export enum Regions {
-    spain = "es",
+    germany = "de",
     usa = "en",
     poland = "pl",
     turkey = "tr",

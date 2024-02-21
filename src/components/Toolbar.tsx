@@ -36,7 +36,7 @@ const Toolbar = ({ onSubmit, reset, onExport }: ToolbarProp) => {
               <option value="usa" defaultChecked>
                 USA
               </option>
-              <option value="spain">Spain</option>
+              <option value="germany">Germany</option>
               <option value="turkey">Turkey</option>
               <option value="poland">Poland</option>
             </Select>
