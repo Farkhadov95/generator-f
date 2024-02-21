@@ -17,7 +17,7 @@ const Loader = () => {
       <ModalContent width={"fit-content"}>
         <ModalBody>
           <Stack direction="row" spacing={4} padding={10}>
-            <Spinner size="xl" />
+            <Spinner size="xl" autoFocus />
           </Stack>
         </ModalBody>
       </ModalContent>

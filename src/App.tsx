@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Spinner, Stack, Text } from "@chakra-ui/react";
 import { FormEvent, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import exportFromJSON from "export-from-json";
@@ -6,7 +6,6 @@ import Toolbar from "./components/Toolbar";
 import DataTable from "./components/DataTable";
 import { postData } from "./api/api";
 import { Regions, dataType, requestType } from "./types";
-import Loader from "./components/Loader";
 
 function App() {
   const [users, setUsers] = useState<dataType[]>([]);
@@ -74,7 +73,9 @@ function App() {
     <Box padding={10}>
       <Toolbar onSubmit={handleSubmit} reset={reset} onExport={handleExport} />
       {isPending ? (
-        <Loader />
+        <Stack direction="row" spacing={4} padding={10}>
+          <Spinner size="xl" autoFocus />
+        </Stack>
       ) : (
         <DataTable
           users={users}
