@@ -14,9 +14,10 @@ import { FormEventHandler, useState } from "react";
 type ToolbarProp = {
   onSubmit: FormEventHandler<HTMLFormElement>;
   reset: () => void;
+  onExport: () => void;
 };
 
-const Toolbar = ({ onSubmit, reset }: ToolbarProp) => {
+const Toolbar = ({ onSubmit, reset, onExport }: ToolbarProp) => {
   const [currentSeed, setCurrentSeed] = useState<number>(0);
   const [currentError, setCurrentError] = useState<number>(0);
   return (
@@ -52,6 +53,7 @@ const Toolbar = ({ onSubmit, reset }: ToolbarProp) => {
             max={1000}
             onChange={(e) => {
               setCurrentError(parseFloat(e));
+              reset();
             }}
             value={Number.isNaN(currentError) ? 0 : currentError}
           >
@@ -94,7 +96,7 @@ const Toolbar = ({ onSubmit, reset }: ToolbarProp) => {
         </Box>
       </form>
 
-      <Button>Export</Button>
+      <Button onClick={onExport}>Export</Button>
     </Box>
   );
 };
