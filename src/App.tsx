@@ -10,6 +10,7 @@ import { Regions, dataType, requestType } from "./types";
 function App() {
   const [users, setUsers] = useState<dataType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [isScrollActive, setIsScrollActive] = useState(false);
   const [currentRequestData, setCurrentRequestData] = useState<requestType>({
     region: Regions.usa,
     errors: 0,
@@ -20,6 +21,7 @@ function App() {
   const reset = () => {
     setUsers([]);
     setCurrentPage(1);
+    setIsScrollActive(false);
   };
 
   const { mutate, isError, isPending } = useMutation<
@@ -55,12 +57,16 @@ function App() {
       };
 
       setCurrentRequestData(requestData);
+      setIsScrollActive(true);
       mutate(requestData);
     }
   };
 
-  const handleLoad = (data: requestType) => {
-    mutate(data);
+  const handleLoad = () => {
+    if (isScrollActive) {
+      mutate(currentRequestData);
+    }
+    return;
   };
 
   const handleExport = () => {
@@ -77,11 +83,7 @@ function App() {
           <Spinner size="xl" autoFocus />
         </Stack>
       ) : (
-        <DataTable
-          users={users}
-          handleLoad={handleLoad}
-          requestData={currentRequestData}
-        />
+        <DataTable users={users} handleLoad={handleLoad} />
       )}
       {isError && <Text>Failed to load data</Text>}
     </Box>
