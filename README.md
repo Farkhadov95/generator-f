@@ -2,6 +2,6 @@
 
 Работает в паре с Generator-f-server
 
-## Технологии - TypeScript / Chakra UI
+## Технологии - TypeScript / React / Chakra UI
 
-## Доступоно по ссылке: https://generator-f.vercel.app
+## Доступно по ссылке: https://generator-f.vercel.app
